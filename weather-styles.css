@@ -1,0 +1,163 @@
+body {
+    background: url(images/scen.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.container {
+    display: flex;
+    background: rgba(39,28,24,0.3);
+    border-radius:1rem;
+    width: 75%;
+    margin: 10% auto 0;
+    height:35vh;
+}
+
+.container .results {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    width: 25%;
+    padding:10px;
+}
+
+.results #country {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    margin:25px 0;
+}
+
+.results .temp-icon {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.temp-icon #temperature {
+    font-size: 4rem;
+    width: 50%;
+}
+
+.temp-icon #icon1 {
+    width:50%;
+} 
+
+.humidity-wind {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 25%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size:2rem;
+}
+
+.humidity-wind #humidity {
+    width:50%;
+}
+
+.humidity-wind #wind-speed {
+    width:50%;
+}
+
+.forecast {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 75%;
+    color: rgb(246, 246, 246);
+    /* background: black; */
+    /* opacity: 0.4; */
+    font-weight: bold;
+    /**height: 400px;**/
+    align-items: center;
+    /* background: rgba(39,28,24,0.3); */
+    margin: 0 auto;
+    text-shadow: grey 2px 0px;
+}
+
+.forecast .hourlyContainer {
+    margin:20px;
+    text-align:center;
+    
+}
+
+.forecast .hourlyContainer .timeIncrement {
+    font-size: 1.5rem;
+}
+
+.forecast .hourlyContainer .temperature {
+    font-size: 1.5rem;
+}
+
+.forecast .hourlyContainer img {
+    width:90%;
+    
+}
+
+.search-bar {
+    text-align: center;
+    width: 75%;
+    display: flex;
+    /* margin-top: 25px; */
+    margin: 40px auto 0px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.localTime {
+    color:white;
+    text-align:center;
+    width: 20%;
+    font-size:1.5rem;
+    background: rgba(39,28,24,0.3);
+    border-radius:1rem;
+    padding:15px;
+}
+
+.text-area {
+    width: 20%;
+    background: rgba(39,28,24,0.3);
+    border-radius:1rem;
+    margin-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.text-area .inputField{
+    opacity: 1;
+    background: none;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight:bold;
+}
+
+.text-area button {
+    background: rgba(39,28,24,0.3);
+    color: white;
+    /* border: 0px; */
+    cursor: pointer;
+    border-radius: 0rem;
+    padding: 14px;
+    font-size: 15px;
+    margin-top: 16px;
+    font-weight:bold;
+}
+
+::placeholder {
+    color:white;
+    
+}

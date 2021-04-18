@@ -14,7 +14,7 @@ body {
     border-radius:1rem;
     width: 75%;
     margin: 10% auto 0;
-    height:35vh;
+    /*height:35vh;*/
 }
 
 .container .results {
@@ -24,6 +24,7 @@ body {
     color: white;
     width: 25%;
     padding:10px;
+    text-shadow: grey 2px 0px;
 }
 
 .results #country {
@@ -46,11 +47,19 @@ body {
 .temp-icon #temperature {
     font-size: 4rem;
     width: 50%;
+    margin-right: 20px;
 }
 
 .temp-icon #icon1 {
-    width:50%;
+    /*width: 42%; */
+    margin-left: -10px;
 } 
+
+.temp-icon #icon1 #icon {
+    padding-top: 20px;
+    width: 120%;
+}
+
 
 .humidity-wind {
     display: flex;
@@ -60,15 +69,27 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size:2rem;
+    font-size:1.1rem;
+}
+
+.humidity-wind img {
+    width:30%;
 }
 
 .humidity-wind #humidity {
     width:50%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
+
+
 
 .humidity-wind #wind-speed {
     width:50%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 .forecast {
@@ -143,6 +164,7 @@ body {
     padding: 10px;
     font-size: 16px;
     font-weight:bold;
+    border-radius:1rem;
 }
 
 .text-area button {
@@ -155,9 +177,20 @@ body {
     font-size: 15px;
     margin-top: 16px;
     font-weight:bold;
+    border-radius:1rem;
 }
 
 ::placeholder {
     color:white;
     
+}
+
+.hide {
+    display:none;
+}
+
+.beginning {
+    position: absolute;
+    width: 15%;
+    top: 40%;
 }

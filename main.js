@@ -1,4 +1,6 @@
-const submit = document.querySelector('[data-submit');
+import API_KEY from "./apikey.js";
+
+const submit = document.querySelector('[data-submit]');
 const fieldData = document.querySelector('[data-field]');
 
 submit.addEventListener('click', () => {
@@ -8,8 +10,9 @@ submit.addEventListener('click', () => {
 
 const connect = async city => {
     try {
-        const apiKey = '8237ad9005288901b410f59e0b6aa774';
-        const apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+        //const apiKey = '8237ad9005288901b410f59e0b6aa774';
+
+        const apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
         const response = await fetch(apiURL);
         const data = await response.json();
 
@@ -18,14 +21,34 @@ const connect = async city => {
         }
         //console.log(response);
         console.log(data);
+         document.querySelector('.text-area').classList.remove('beginning');
+        document.querySelector('.container').classList.remove('hide');
+        document.querySelector('.localTime').classList.remove('hide');
+       
+
         document.getElementById('country').innerHTML = `${data.name}, ${data.sys.country}`;
         document.getElementById('temperature').innerHTML = `${Math.round(data.main.temp)}&#8451;`;
-        document.getElementById('humidity').innerHTML = `Humidity ${data.main.humidity}`;
-        document.getElementById('wind-speed').innerHTML = `WSpeed: ${data.wind.speed}`;
-        //document.getElementById('icon2').src = 'images/03d@2x.png';
+       document.getElementById('humidity').innerHTML = `${data.main.humidity} %`;
+        document.getElementById('wind-speed').innerHTML = `${data.wind.speed} m/s`;
+
+        const getHumid = document.getElementById('humidity');
+        const myImage = document.createElement('img');
+        myImage.src = 'images/03d@2x.png';
+        myImage.classList.add('humid-image');
+        getHumid.appendChild(myImage);
+        getHumid.insertAdjacentElement("afterbegin", myImage);
+
+        const getWindSpeed = document.getElementById('wind-speed');
+        const myImage2 = document.createElement('img');
+        myImage2.src = 'images/03d@2x.png';
+        myImage2.classList.add('windspeed-image');
+        getWindSpeed.appendChild(myImage2);
+        getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
+
+        //document.getElementById('my-image').src = 'images/03d@2x.png';
         //document.getElementById('wind-speed-image').src = 'images/03d@2x.png';
         //document.getElementById('description').innerHTML = data.weather[0].description;
-       // weatherImage.src = `http://openweathermap.org/img/wn/${loc}@2x.png`
+        // weatherImage.src = `http://openweathermap.org/img/wn/${loc}@2x.png`
         //const sunrise = new Date((data.sys.sunrise + data.timezone) * 1000);
         //const sunset = new Date((data.sys.sunset + data.timezone) * 1000);
         let loc = data.weather[0].icon;
@@ -41,7 +64,7 @@ const connect = async city => {
 
 const getForecast = async (lat, lon, timestr) => {
     const apiKey = '8237ad9005288901b410f59e0b6aa774';
-    const apiURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    const apiURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
     const response = await fetch(apiURL);
     const data = await response.json();
 
@@ -52,6 +75,7 @@ const getForecast = async (lat, lon, timestr) => {
     document.querySelector('.localTime').innerHTML = timestr;
     console.log(data);
     let hours = timestr.getHours();
+    console.log(hours + " current hours");
     //         i = 13,     13 <= 37, once we reach 24 set to 00:00, 
     for (let i = hours; i <= hours + 24; i += 3) {
         const forecast = document.querySelector('.forecast'); //main
@@ -66,10 +90,13 @@ const getForecast = async (lat, lon, timestr) => {
         if (i < 10) {
             timeIncrement.innerHTML = `0${i}:00`;
         }
-        // if(i==24) {
-        //   i = 0;
-        //   timeIncrement.innerHTML = `0${i}:00`;
-        // }
+        console.log(i + " is");
+        if (i >= 24) {
+            //i = 0; 27-24 =3, 30-24, 6
+            let resetHour = i - 24;
+            console.log(resetHour + " reset");
+            timeIncrement.innerHTML = `${resetHour}:00`;
+        }
         hourlyContainer.appendChild(timeIncrement);
 
         const weatherImage = document.createElement('IMG');

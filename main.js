@@ -62,7 +62,7 @@ const connect = async city => {
 }
 
 const getForecast = async (lat, lon, timestr) => {
-    const apiKey = '8237ad9005288901b410f59e0b6aa774';
+    //const apiKey = '8237ad9005288901b410f59e0b6aa774';
     const apiURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
     const response = await fetch(apiURL);
     const data = await response.json();

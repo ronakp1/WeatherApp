@@ -14,8 +14,6 @@ const connect = async city => {
         const response = await fetch(apiURL);
         const { data } = await response.json();
 
-        const {name, coord: {lon, lat}, weather: [{icon}], main: {temp, humidity}, wind: {speed}, sys: {country}} = data;
-
         if (data.cod == "404") {
             throw new Error("Unknown city name");
         }
@@ -24,10 +22,10 @@ const connect = async city => {
         document.querySelector('.container').classList.remove('hide');
         document.querySelector('.localTime').classList.remove('hide');
 
-        document.getElementById('country').innerHTML = `${name}, ${country}`;
-        document.getElementById('temperature').innerHTML = `${Math.round(temp)}&#8451;`;
-        document.getElementById('humidity').innerHTML = `${humidity} %`;
-        document.getElementById('wind-speed').innerHTML = `${speed} m/s`;
+        document.getElementById('country').innerHTML = `${data.name}, ${data.sys.country}`;
+        document.getElementById('temperature').innerHTML = `${Math.round(data.main.temp)}&#8451;`;
+        document.getElementById('humidity').innerHTML = `${data.main.humidity} %`;
+        document.getElementById('wind-speed').innerHTML = `${data.wind.speed} m/s`;
 
         const getHumid = document.getElementById('humidity');
         const myImage = document.createElement('img');
@@ -43,11 +41,11 @@ const connect = async city => {
         getWindSpeed.appendChild(myImage2);
         getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
 
-        //let loc = data.weather[0].icon;
-        document.getElementById('icon').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+        let loc = data.weather[0].icon;
+        document.getElementById('icon').src = `http://openweathermap.org/img/wn/${loc}@2x.png`;
         let timestr = new Date(data.dt * 1000 + (data.timezone * 1000));
-        //let lat = data.coord.lat;
-        //let lon = data.coord.lon;
+        let lat = data.coord.lat;
+        let lon = data.coord.lon;
         getForecast(lat, lon, timestr);
     } catch (error) {
         console.log(error);

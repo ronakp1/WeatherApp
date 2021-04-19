@@ -10,7 +10,6 @@ submit.addEventListener('click', () => {
 
 const connect = async city => {
     try {
-        //const apiKey = '8237ad9005288901b410f59e0b6aa774';
         const apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
         const response = await fetch(apiURL);
         const data = await response.json();
@@ -18,16 +17,15 @@ const connect = async city => {
         if (data.cod == "404") {
             throw new Error("Unknown city name");
         }
-        //console.log(response);
-        console.log(data);
-         document.querySelector('.text-area').classList.remove('beginning');
+
+        document.querySelector('.text-area').classList.remove('beginning');
         document.querySelector('.container').classList.remove('hide');
         document.querySelector('.localTime').classList.remove('hide');
-       
+
 
         document.getElementById('country').innerHTML = `${data.name}, ${data.sys.country}`;
         document.getElementById('temperature').innerHTML = `${Math.round(data.main.temp)}&#8451;`;
-       document.getElementById('humidity').innerHTML = `${data.main.humidity} %`;
+        document.getElementById('humidity').innerHTML = `${data.main.humidity} %`;
         document.getElementById('wind-speed').innerHTML = `${data.wind.speed} m/s`;
 
         const getHumid = document.getElementById('humidity');
@@ -44,12 +42,6 @@ const connect = async city => {
         getWindSpeed.appendChild(myImage2);
         getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
 
-        //document.getElementById('my-image').src = 'images/03d@2x.png';
-        //document.getElementById('wind-speed-image').src = 'images/03d@2x.png';
-        //document.getElementById('description').innerHTML = data.weather[0].description;
-        // weatherImage.src = `http://openweathermap.org/img/wn/${loc}@2x.png`
-        //const sunrise = new Date((data.sys.sunrise + data.timezone) * 1000);
-        //const sunset = new Date((data.sys.sunset + data.timezone) * 1000);
         let loc = data.weather[0].icon;
         document.getElementById('icon').src = `http://openweathermap.org/img/wn/${loc}@2x.png`;
         let timestr = new Date(data.dt * 1000 + (data.timezone * 1000));
@@ -62,7 +54,6 @@ const connect = async city => {
 }
 
 const getForecast = async (lat, lon, timestr) => {
-    //const apiKey = '8237ad9005288901b410f59e0b6aa774';
     const apiURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
     const response = await fetch(apiURL);
     const data = await response.json();
@@ -74,12 +65,11 @@ const getForecast = async (lat, lon, timestr) => {
     document.querySelector('.localTime').innerHTML = timestr;
     console.log(data);
     let hours = timestr.getHours();
-    console.log(hours + " current hours");
-    //         i = 13,     13 <= 37, once we reach 24 set to 00:00, 
-    for (let i = hours; i <= hours + 24; i += 3) {
-        const forecast = document.querySelector('.forecast'); //main
 
-        const hourlyContainer = document.createElement('div'); //seperate
+    for (let i = hours; i <= hours + 24; i += 3) {
+        const forecast = document.querySelector('.forecast'); 
+
+        const hourlyContainer = document.createElement('div'); 
         hourlyContainer.classList.add("hourlyContainer");
         forecast.appendChild(hourlyContainer);
 
@@ -89,9 +79,8 @@ const getForecast = async (lat, lon, timestr) => {
         if (i < 10) {
             timeIncrement.innerHTML = `0${i}:00`;
         }
-        console.log(i + " is");
+
         if (i >= 24) {
-            //i = 0; 27-24 =3, 30-24, 6
             let resetHour = i - 24;
             console.log(resetHour + " reset");
             timeIncrement.innerHTML = `${resetHour}:00`;
@@ -113,7 +102,5 @@ const getForecast = async (lat, lon, timestr) => {
         windSpeed.classList.add("windSpeed");
         windSpeed.innerHTML = `${data.hourly[i].wind_speed}`;
         temperature.appendChild(windSpeed);
-
-
     }
 }

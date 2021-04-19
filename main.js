@@ -14,7 +14,7 @@ const connect = async city => {
         const response = await fetch(apiURL);
         const data = await response.json();
 
-        const {name, coord: {lon, lat}, weather: [{icon}], main: {temp, humidity}, wind: {speed}, sys: {country}} = data;
+        const { name, coord: { lon, lat }, weather: [{ icon }], main: { temp, humidity }, wind: { speed }, sys: { country } } = data;
 
         //if (data.cod == "404") {
         //     throw new Error("Unknown city name");
@@ -44,7 +44,7 @@ const connect = async city => {
         getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
 
         document.getElementById('icon').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-        
+
         let timestr = new Date(data.dt * 1000 + (data.timezone * 1000));
         getForecast(lat, lon, timestr);
     } catch (error) {
@@ -58,9 +58,7 @@ const getForecast = async (lat, lon, timestr) => {
         const response = await fetch(apiURL);
         const data = await response.json();
 
-
         document.querySelectorAll('.hourlyContainer').forEach(e => e.remove());
-
 
         document.querySelector('.localTime').innerHTML = timestr;
         let hours = timestr.getHours();

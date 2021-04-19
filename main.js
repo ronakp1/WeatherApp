@@ -12,11 +12,11 @@ const connect = async city => {
     try {
         const apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
         const response = await fetch(apiURL);
-        const { data } = await response.json();
+        const data = await response.json();
 
-        if (data.cod == "404") {
-            throw new Error("Unknown city name");
-        }
+        //if (data.cod == "404") {
+       //     throw new Error("Unknown city name");
+       // }
 
         document.querySelector('.text-area').classList.remove('beginning');
         document.querySelector('.container').classList.remove('hide');

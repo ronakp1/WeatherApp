@@ -48,11 +48,13 @@ const connect = async city => {
         getWindSpeed.appendChild(myImage2);
         getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
 
-        let loc = data.weather[0].icon;
-        document.getElementById('icon').src = `http://openweathermap.org/img/wn/${loc}@2x.png`;
+        //let loc = data.weather[0].icon;
+        //document.getElementById('icon').src = `http://openweathermap.org/img/wn/${loc}@2x.png`;
+        document.getElementById('icon').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+        
         let timestr = new Date(data.dt * 1000 + (data.timezone * 1000));
-        let lat = data.coord.lat;
-        let lon = data.coord.lon;
+        //let lat = data.coord.lat;
+        //let lon = data.coord.lon;
         getForecast(lat, lon, timestr);
     } catch (error) {
         console.log(error);

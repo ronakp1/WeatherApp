@@ -24,11 +24,6 @@ const connect = async city => {
         document.querySelector('.container').classList.remove('hide');
         document.querySelector('.localTime').classList.remove('hide');
 
-        /**document.getElementById('country').innerHTML = `${data.name}, ${data.sys.country}`;
-        document.getElementById('temperature').innerHTML = `${Math.round(data.main.temp)}&#8451;`;
-        document.getElementById('humidity').innerHTML = `${data.main.humidity} %`;
-        document.getElementById('wind-speed').innerHTML = `${data.wind.speed} m/s`;*/
-
         document.getElementById('country').innerHTML = `${name}, ${country}`;
         document.getElementById('temperature').innerHTML = `${Math.round(temp)}&#8451;`;
         document.getElementById('humidity').innerHTML = `${humidity} %`;
@@ -48,13 +43,9 @@ const connect = async city => {
         getWindSpeed.appendChild(myImage2);
         getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
 
-        //let loc = data.weather[0].icon;
-        //document.getElementById('icon').src = `http://openweathermap.org/img/wn/${loc}@2x.png`;
         document.getElementById('icon').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
         
         let timestr = new Date(data.dt * 1000 + (data.timezone * 1000));
-        //let lat = data.coord.lat;
-        //let lon = data.coord.lon;
         getForecast(lat, lon, timestr);
     } catch (error) {
         console.log(error);
@@ -72,7 +63,6 @@ const getForecast = async (lat, lon, timestr) => {
 
 
         document.querySelector('.localTime').innerHTML = timestr;
-        console.log(data);
         let hours = timestr.getHours();
 
         for (let i = hours; i <= hours + 24; i += 3) {
@@ -91,7 +81,6 @@ const getForecast = async (lat, lon, timestr) => {
 
             if (i >= 24) {
                 let resetHour = i - 24;
-                console.log(resetHour + " reset");
                 timeIncrement.innerHTML = `${resetHour}:00`;
             }
             hourlyContainer.appendChild(timeIncrement);

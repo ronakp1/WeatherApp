@@ -12,7 +12,9 @@ const connect = async city => {
     try {
         const apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
         const response = await fetch(apiURL);
-        const data = await response.json();
+        const { data } = await response.json();
+
+        const {coord: {lon, lat}, weather: [{icon}], main: {temp, humidity}, wind: {speed}, sys: {country}, name} = data;
 
         if (data.cod == "404") {
             throw new Error("Unknown city name");
@@ -22,10 +24,10 @@ const connect = async city => {
         document.querySelector('.container').classList.remove('hide');
         document.querySelector('.localTime').classList.remove('hide');
 
-        document.getElementById('country').innerHTML = `${data.name}, ${data.sys.country}`;
-        document.getElementById('temperature').innerHTML = `${Math.round(data.main.temp)}&#8451;`;
-        document.getElementById('humidity').innerHTML = `${data.main.humidity} %`;
-        document.getElementById('wind-speed').innerHTML = `${data.wind.speed} m/s`;
+        document.getElementById('country').innerHTML = `${name}, ${country}`;
+        document.getElementById('temperature').innerHTML = `${Math.round(temp)}&#8451;`;
+        document.getElementById('humidity').innerHTML = `${humidity} %`;
+        document.getElementById('wind-speed').innerHTML = `${speed} m/s`;
 
         const getHumid = document.getElementById('humidity');
         const myImage = document.createElement('img');
@@ -41,11 +43,11 @@ const connect = async city => {
         getWindSpeed.appendChild(myImage2);
         getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
 
-        let loc = data.weather[0].icon;
-        document.getElementById('icon').src = `http://openweathermap.org/img/wn/${loc}@2x.png`;
+        //let loc = data.weather[0].icon;
+        document.getElementById('icon').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
         let timestr = new Date(data.dt * 1000 + (data.timezone * 1000));
-        let lat = data.coord.lat;
-        let lon = data.coord.lon;
+        //let lat = data.coord.lat;
+        //let lon = data.coord.lon;
         getForecast(lat, lon, timestr);
     } catch (error) {
         console.log(error);
@@ -53,53 +55,57 @@ const connect = async city => {
 }
 
 const getForecast = async (lat, lon, timestr) => {
-    const apiURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
-    const response = await fetch(apiURL);
-    const data = await response.json();
+    try {
+        const apiURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
+        const response = await fetch(apiURL);
+        const data = await response.json();
 
 
-    document.querySelectorAll('.hourlyContainer').forEach(e => e.remove());
+        document.querySelectorAll('.hourlyContainer').forEach(e => e.remove());
 
 
-    document.querySelector('.localTime').innerHTML = timestr;
-    console.log(data);
-    let hours = timestr.getHours();
+        document.querySelector('.localTime').innerHTML = timestr;
+        console.log(data);
+        let hours = timestr.getHours();
 
-    for (let i = hours; i <= hours + 24; i += 3) {
-        const forecast = document.querySelector('.forecast'); 
+        for (let i = hours; i <= hours + 24; i += 3) {
+            const forecast = document.querySelector('.forecast');
 
-        const hourlyContainer = document.createElement('div'); 
-        hourlyContainer.classList.add("hourlyContainer");
-        forecast.appendChild(hourlyContainer);
+            const hourlyContainer = document.createElement('div');
+            hourlyContainer.classList.add("hourlyContainer");
+            forecast.appendChild(hourlyContainer);
 
-        const timeIncrement = document.createElement('div');
-        timeIncrement.classList.add("timeIncrement");
-        timeIncrement.innerHTML = `${i}:00`;
-        if (i < 10) {
-            timeIncrement.innerHTML = `0${i}:00`;
+            const timeIncrement = document.createElement('div');
+            timeIncrement.classList.add("timeIncrement");
+            timeIncrement.innerHTML = `${i}:00`;
+            if (i < 10) {
+                timeIncrement.innerHTML = `0${i}:00`;
+            }
+
+            if (i >= 24) {
+                let resetHour = i - 24;
+                console.log(resetHour + " reset");
+                timeIncrement.innerHTML = `${resetHour}:00`;
+            }
+            hourlyContainer.appendChild(timeIncrement);
+
+            const weatherImage = document.createElement('IMG');
+            weatherImage.classList.add("weatherImage");
+            let loc = data.hourly[i].weather[0].icon;
+            weatherImage.src = `http://openweathermap.org/img/wn/${loc}@2x.png`
+            hourlyContainer.appendChild(weatherImage)
+
+            const temperature = document.createElement('div');
+            temperature.classList.add("temperature");
+            temperature.innerHTML = `${Math.round(data.hourly[i].temp)}&#8451;`;
+            hourlyContainer.appendChild(temperature);
+
+            const windSpeed = document.createElement('div');
+            windSpeed.classList.add("windSpeed");
+            windSpeed.innerHTML = `${data.hourly[i].wind_speed}`;
+            temperature.appendChild(windSpeed);
         }
-
-        if (i >= 24) {
-            let resetHour = i - 24;
-            console.log(resetHour + " reset");
-            timeIncrement.innerHTML = `${resetHour}:00`;
-        }
-        hourlyContainer.appendChild(timeIncrement);
-
-        const weatherImage = document.createElement('IMG');
-        weatherImage.classList.add("weatherImage");
-        let loc = data.hourly[i].weather[0].icon;
-        weatherImage.src = `http://openweathermap.org/img/wn/${loc}@2x.png`
-        hourlyContainer.appendChild(weatherImage)
-
-        const temperature = document.createElement('div');
-        temperature.classList.add("temperature");
-        temperature.innerHTML = `${Math.round(data.hourly[i].temp)}&#8451;`;
-        hourlyContainer.appendChild(temperature);
-
-        const windSpeed = document.createElement('div');
-        windSpeed.classList.add("windSpeed");
-        windSpeed.innerHTML = `${data.hourly[i].wind_speed}`;
-        temperature.appendChild(windSpeed);
+    } catch (error) {
+        console.log(error);
     }
 }

@@ -14,7 +14,7 @@ const connect = async city => {
         const response = await fetch(apiURL);
         const { data } = await response.json();
 
-        const {coord: {lon, lat}, weather: [{icon}], main: {temp, humidity}, wind: {speed}, sys: {country}, name} = data;
+        const {name, coord: {lon, lat}, weather: [{icon}], main: {temp, humidity}, wind: {speed}, sys: {country}} = data;
 
         if (data.cod == "404") {
             throw new Error("Unknown city name");

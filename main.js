@@ -22,7 +22,6 @@ const connect = async city => {
         document.querySelector('.container').classList.remove('hide');
         document.querySelector('.localTime').classList.remove('hide');
 
-
         document.getElementById('country').innerHTML = `${data.name}, ${data.sys.country}`;
         document.getElementById('temperature').innerHTML = `${Math.round(data.main.temp)}&#8451;`;
         document.getElementById('humidity').innerHTML = `${data.main.humidity} %`;

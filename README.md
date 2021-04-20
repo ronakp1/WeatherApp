@@ -1,2 +1,4 @@
 # WeatherApp
-Interacts with the weather API to obtain and present different weather statistics
+Interacts with the OpenWeatherMap API (https://openweathermap.org/api) to obtain and display weather statistics, including the current temperature and a 24 hour forecast.
+
+

@@ -17,6 +17,13 @@ body {
     height: 97vh;
 }
 
+@media screen and (max-width:400px) {
+    .main {
+        /*height: 97vh;*/
+    }
+}
+
+
 
 .container {
     display: flex;

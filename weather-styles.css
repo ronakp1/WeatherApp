@@ -27,6 +27,13 @@ body {
     /* height: 35vh;*/
 }
 
+@media screen and (max-width:400px) {
+    .container {
+        height:80%;
+        flex-wrap:wrap;
+    }
+}
+
 .container .results {
     display: flex;
     align-items: center;
@@ -35,6 +42,12 @@ body {
     width: 25%;
     padding: 10px;
     text-shadow: grey 2px 0px;
+}
+
+@media screen and (max-width:400px) {
+    .container .results {
+        width:100%;
+    }
 }
 
 .results #country {
@@ -113,6 +126,12 @@ body {
     /* background: rgba(39,28,24,0.3); */
     margin: 0 auto;
     text-shadow: grey 2px 0px;
+}
+
+@media screen and (max-width:400px) {
+    .forecast {
+        flex-wrap: wrap;
+    }
 }
 
 .forecast .hourlyContainer {

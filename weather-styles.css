@@ -27,7 +27,7 @@ body {
     /* height: 35vh;*/
 }
 
-@media screen and (max-width:400px) {
+@media only screen and (max-width:400px) {
     .container {
         height:80%;
         flex-wrap:wrap;
@@ -44,7 +44,7 @@ body {
     text-shadow: grey 2px 0px;
 }
 
-@media screen and (max-width:400px) {
+@media only screen and (max-width:400px) {
     .container .results {
         width:100%;
     }
@@ -128,7 +128,7 @@ body {
     text-shadow: grey 2px 0px;
 }
 
-@media screen and (max-width:400px) {
+@media only screen and (max-width:400px) {
     .forecast {
         flex-wrap: wrap;
     }

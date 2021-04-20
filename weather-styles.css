@@ -19,7 +19,7 @@ body {
 
 @media screen and (max-width:400px) {
     .main {
-        /*height: 97vh;*/
+        height: 100%;
     }
 }
 
@@ -38,6 +38,7 @@ body {
     .container {
         height:80%;
         flex-wrap:wrap;
+        width:90%;
     }
 }
 
@@ -138,6 +139,7 @@ body {
 @media screen and (max-width:400px) {
     .forecast {
         flex-wrap: wrap;
+        width:100%;
     }
 }
 
@@ -168,6 +170,13 @@ body {
 .forecast .hourlyContainer .temperature {
     font-size: 1.5rem;
 }
+
+@media screen and (max-width:400px) {
+    .forecast .hourlyContainer .temperature {
+        font-size:1rem;
+    }
+}
+
 
 .forecast .hourlyContainer img {
     width:90%;   
@@ -256,4 +265,10 @@ font-size:0.8rem;
     position: absolute;
     width: 15%;
     top: 40%;
+}
+
+@media screen and (max-width:400px) {
+    .forecast .hourlyContainer .windSpeed {
+        font-size:1rem;
+    }
 }

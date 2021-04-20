@@ -192,7 +192,13 @@ body {
 
 @media screen and (max-width:400px) {
     .forecast .hourlyContainer .humidity-wind {
-font-size:0.8rem;
+    font-size:0.8rem;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .forecast .hourlyContainer .windSpeed {
+    font-size:0.8rem;
     }
 }
 
@@ -219,6 +225,13 @@ font-size:0.8rem;
     padding: 15px;
 }
 
+@media screen and (max-width:400px) {
+    .localTime {
+    width:50%;
+    }
+}
+
+
 .text-area {
     width: 20%;
     background: rgba(39,28,24,0.5);
@@ -227,6 +240,16 @@ font-size:0.8rem;
     padding-top: 15px;
     padding-bottom: 15px;
 }
+
+@media screen and (max-width:400px) {
+    .text-area {
+        width:50%;
+        margin-right:0px;
+        height:25%;
+    }
+}
+
+
 
 .text-area .inputField{
     opacity: 1;
@@ -237,6 +260,12 @@ font-size:0.8rem;
     font-weight:bold;
     border-radius:1rem;
     width:85%;
+}
+
+@media screen and (max-width:400px) {
+    .text-area .inputField {
+
+    }
 }
 
 .text-area button {
@@ -265,10 +294,4 @@ font-size:0.8rem;
     position: absolute;
     width: 15%;
     top: 40%;
-}
-
-@media screen and (max-width:400px) {
-    .forecast .hourlyContainer .windSpeed {
-        font-size:1rem;
-    }
 }

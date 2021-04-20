@@ -297,6 +297,8 @@ body {
 }
 
 @media screen and (max-width:400px) {
+    .beginning {
     height:15%;
     width:60%;
+}
 }

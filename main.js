@@ -16,10 +16,6 @@ const connect = async city => {
 
         const { name, coord: { lon, lat }, weather: [{ icon }], main: { temp, humidity }, wind: { speed }, sys: { country } } = data;
 
-        if (data.cod == "404") {
-            throw new Error("Unknown city name");
-        }
-
         document.querySelector('.text-area').classList.remove('beginning');
         document.querySelector('.container').classList.remove('hide');
         document.querySelector('.localTime').classList.remove('hide');
@@ -96,7 +92,7 @@ const getForecast = async (lat, lon, timestr) => {
 
             const windSpeed = document.createElement('div');
             windSpeed.classList.add("windSpeed");
-            windSpeed.innerHTML = `${data.hourly[i].wind_speed}`;
+            windSpeed.innerHTML = `${data.hourly[i].wind_speed} m/s`;
             temperature.appendChild(windSpeed);
         }
     } catch (error) {

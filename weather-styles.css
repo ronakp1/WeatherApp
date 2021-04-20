@@ -129,6 +129,9 @@ body {
     font-size: 1.5rem;
 }
 
+.forecast .hourlyContainer .temperature .windspeed {
+    font-size:14px;
+}
 .forecast .hourlyContainer img {
     width:90%;
     

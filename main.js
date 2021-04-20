@@ -92,7 +92,7 @@ const getForecast = async (lat, lon, timestr) => {
 
             const windSpeed = document.createElement('div');
             windSpeed.classList.add("windSpeed");
-            windSpeed.innerHTML = `${data.hourly[i].wind_speed} m/s`;
+            windSpeed.innerHTML = `${data.hourly[i].wind_speed}`;
             temperature.appendChild(windSpeed);
         }
     } catch (error) {

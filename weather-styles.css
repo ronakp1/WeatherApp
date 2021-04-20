@@ -295,3 +295,8 @@ body {
     width: 15%;
     top: 40%;
 }
+
+@media screen and (max-width:400px) {
+    height:15%;
+    width:60%;
+}

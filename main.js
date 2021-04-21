@@ -44,7 +44,7 @@ const connect = async city => {
         getWindSpeed.appendChild(myImage2);
         getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
 
-        myIcon = document.getElementById('icon');
+        const myIcon = document.getElementById('icon');
         myIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
         let timestr = new Date(data.dt * 1000 + (data.timezone * 1000));

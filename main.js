@@ -20,26 +20,32 @@ const connect = async city => {
         document.querySelector('.container').classList.remove('hide');
         document.querySelector('.localTime').classList.remove('hide');
 
-        document.getElementById('country').innerHTML = `${name}, ${country}`;
-        document.getElementById('temperature').innerHTML = `${Math.round(temp)}&#8451;`;
-        document.getElementById('humidity').innerHTML = `${humidity} %`;
-        document.getElementById('wind-speed').innerHTML = `${speed} m/s`;
-
         const getHumid = document.getElementById('humidity');
+        const getCountry = document.getElementById('country');
+        const getTemperature = document.getElementById('temperature');
+        const getWindSpeed = document.getElementById('wind-speed');
+
+        getCountry.innerHTML = `${name}, ${country}`;
+        getTemperature.innerHTML = `${Math.round(temp)}&#8451;`;
+        getHumid.innerHTML = `${humidity} %`;
+        getWindSpeed.innerHTML = `${speed} m/s`;
+
+        //const getHumid = document.getElementById('humidity');
         const myImage = document.createElement('img');
         myImage.src = 'images/03d@2x.png';
         myImage.classList.add('humid-image');
         getHumid.appendChild(myImage);
         getHumid.insertAdjacentElement("afterbegin", myImage);
 
-        const getWindSpeed = document.getElementById('wind-speed');
+        //const getWindSpeed = document.getElementById('wind-speed');
         const myImage2 = document.createElement('img');
         myImage2.src = 'images/03d@2x.png';
         myImage2.classList.add('windspeed-image');
         getWindSpeed.appendChild(myImage2);
         getWindSpeed.insertAdjacentElement("afterbegin", myImage2);
 
-        document.getElementById('icon').src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+        myIcon = document.getElementById('icon');
+        myIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
         let timestr = new Date(data.dt * 1000 + (data.timezone * 1000));
         getForecast(lat, lon, timestr);

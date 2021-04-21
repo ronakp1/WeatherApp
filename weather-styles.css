@@ -262,12 +262,6 @@ body {
     width:85%;
 }
 
-@media screen and (max-width:400px) {
-    .text-area .inputField {
-
-    }
-}
-
 .text-area button {
     background: rgba(39,28,24,0.5);
     color: white;

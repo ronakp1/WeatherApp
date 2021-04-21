@@ -27,15 +27,10 @@ const connect = async city => {
         container.classList.remove('hide');
         localTime.classList.remove('hide');
 
-       // document.querySelector('.text-area').classList.remove('beginning');
-       // document.querySelector('.container').classList.remove('hide');
-        //document.querySelector('.localTime').classList.remove('hide');
-
         getCountry.innerHTML = `${name}, ${country}`;
         getTemperature.innerHTML = `${Math.round(temp)}&#8451;`;
         getHumid.innerHTML = `${humidity} %`;
         getWindSpeed.innerHTML = `${speed} m/s`;
-
 
         const myImage = document.createElement('img');
         myImage.src = 'images/03d@2x.png';

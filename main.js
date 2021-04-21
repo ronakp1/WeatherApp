@@ -6,7 +6,9 @@ const getHumid = document.getElementById('humidity');
 const getCountry = document.getElementById('country');
 const getTemperature = document.getElementById('temperature');
 const getWindSpeed = document.getElementById('wind-speed');
-
+const textArea =  document.querySelector('.text-area');
+const container = document.querySelector('.container');
+const localTime = document.querySelector('.localTime');
 
 submit.addEventListener('click', () => {
     const city = fieldData.value;
@@ -21,28 +23,26 @@ const connect = async city => {
 
         const { name, coord: { lon, lat }, weather: [{ icon }], main: { temp, humidity }, wind: { speed }, sys: { country } } = data;
 
-        document.querySelector('.text-area').classList.remove('beginning');
-        document.querySelector('.container').classList.remove('hide');
-        document.querySelector('.localTime').classList.remove('hide');
+        textArea.classList.remove('beginning');
+        container.classList.remove('hide');
+        localTime.classList.remove('hide');
 
-        //const getHumid = document.getElementById('humidity');
-        //const getCountry = document.getElementById('country');
-       // const getTemperature = document.getElementById('temperature');
-        //const getWindSpeed = document.getElementById('wind-speed');
+       // document.querySelector('.text-area').classList.remove('beginning');
+       // document.querySelector('.container').classList.remove('hide');
+        //document.querySelector('.localTime').classList.remove('hide');
 
         getCountry.innerHTML = `${name}, ${country}`;
         getTemperature.innerHTML = `${Math.round(temp)}&#8451;`;
         getHumid.innerHTML = `${humidity} %`;
         getWindSpeed.innerHTML = `${speed} m/s`;
 
-        //const getHumid = document.getElementById('humidity');
+
         const myImage = document.createElement('img');
         myImage.src = 'images/03d@2x.png';
         myImage.classList.add('humid-image');
         getHumid.appendChild(myImage);
         getHumid.insertAdjacentElement("afterbegin", myImage);
 
-        //const getWindSpeed = document.getElementById('wind-speed');
         const myImage2 = document.createElement('img');
         myImage2.src = 'images/03d@2x.png';
         myImage2.classList.add('windspeed-image');

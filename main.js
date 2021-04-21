@@ -2,6 +2,11 @@ import API_KEY from "./apikey.js";
 
 const submit = document.querySelector('[data-submit]');
 const fieldData = document.querySelector('[data-field]');
+const getHumid = document.getElementById('humidity');
+const getCountry = document.getElementById('country');
+const getTemperature = document.getElementById('temperature');
+const getWindSpeed = document.getElementById('wind-speed');
+
 
 submit.addEventListener('click', () => {
     const city = fieldData.value;
@@ -20,10 +25,10 @@ const connect = async city => {
         document.querySelector('.container').classList.remove('hide');
         document.querySelector('.localTime').classList.remove('hide');
 
-        const getHumid = document.getElementById('humidity');
-        const getCountry = document.getElementById('country');
-        const getTemperature = document.getElementById('temperature');
-        const getWindSpeed = document.getElementById('wind-speed');
+        //const getHumid = document.getElementById('humidity');
+        //const getCountry = document.getElementById('country');
+       // const getTemperature = document.getElementById('temperature');
+        //const getWindSpeed = document.getElementById('wind-speed');
 
         getCountry.innerHTML = `${name}, ${country}`;
         getTemperature.innerHTML = `${Math.round(temp)}&#8451;`;
